@@ -34,5 +34,23 @@ canvas
         background: #222
     &:active
         transform: scale(0.95)
-            
+    &-rules    
+        position: absolute
+        top: 30px
+        left: 30px 
         
+
+.rules
+    position: absolute
+    top: 0
+    left: 0
+    background: #333
+    color: #fff   
+    min-height: 100vh
+    width: 400px     
+    padding: 20px
+    line-height: 1.5
+    transform: translateX(-400px)
+    transition: transform 1.5s
+    &.show
+        transform: translateX(0)
