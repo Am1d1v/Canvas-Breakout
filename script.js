@@ -7,6 +7,9 @@ const canvas = document.querySelector('#canvas');
 const context = canvas.getContext('2d');
 
 
+// Score
+let score = 0;
+
 // Create ball props
 const ball = {
     x: canvas.width / 2,
@@ -35,7 +38,6 @@ function drawBall(){
     context.fill();
     context.closePath();
 };
-drawBall();
 
 // Draw paddle on canvas
 function drawPaddle(){
@@ -45,7 +47,20 @@ function drawPaddle(){
     context.fill();
     context.closePath();
 }
-drawPaddle();
+
+// Draw scores
+function drawScores(){
+    context.font = '20px Arial'
+    context.fillText(`Score: ${score}`, canvas.width - 100, 30);
+}
+
+// Draw canvas elements
+function draw(){
+    drawBall();
+    drawPaddle();
+    drawScores();
+}
+draw();
 
 // Show Rules
 rulesButton.addEventListener('click', () => rules.classList.add('show'));
