@@ -125,7 +125,7 @@ update();
 // Keydown event
 function keyDown(event){
     if(event.key === 'Right' || event.key === 'ArrowRight'){
-        paddle.dx = paddle.speed
+        paddle.dx = paddle.speed;
     } else if(event.key === 'Left' || event.key === 'ArrowLeft'){
         paddle.dx = paddle.speed * -1;
     }
@@ -133,7 +133,11 @@ function keyDown(event){
 
 // Keyup event
 function keyUp(event){
-    
+    if(event.key === 'Right' || event.key === 'ArrowRight'){
+        paddle.dx = 0;
+    } else if(event.key === 'Left' || event.key === 'ArrowLeft'){
+        paddle.dx = 0;
+    }
 }
 
 // Keyboard events
