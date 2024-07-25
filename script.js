@@ -141,10 +141,19 @@ function moveBall(){
                     
                     // Brick becomes invisible after collision with the ball
                     brick.visible = false;
+
+                    increaseScore();
                     }
             }
         });
     });   
+
+    // Hit bottom wall
+    if(ball.y + ball.size > canvas.height){
+        showAllBricks();
+        score = 0;
+    }
+
 }
 
 // Update canvas elements
@@ -161,6 +170,23 @@ function update(){
     requestAnimationFrame(update);
 }
 update();
+
+function increaseScore(){
+    score += 1;
+
+    if(score % (brickColumnCount * brickRowCount) === 0){
+        showAllBricks();
+    }
+}
+
+// Make all bricks apper
+function showAllBricks(){
+    bricks.forEach(column => {
+        column.forEach(brick => {
+            brick.visible = true;
+        });
+    });
+}
 
 // Keydown event. Move Paddle left/right directions
 function keyDown(event){
