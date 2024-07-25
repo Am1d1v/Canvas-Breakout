@@ -120,6 +120,31 @@ function moveBall(){
     // Wall collision
     if(ball.x + ball.size > canvas.width || ball.x - ball.size < 0) ball.dx *= -1;
     if(ball.y + ball.size > canvas.height || ball.y - ball.size < 0) ball.dy *= -1;
+
+    // Paddle collision
+    if(ball.x - ball.size > paddle.x && 
+       ball.x + ball.size < paddle.x + paddle.width && 
+       ball.y + ball.size > paddle.y){
+        ball.dy = -ball.speed;
+       }
+
+    // Brick collision
+    bricks.forEach(column => {
+        column.forEach(brick => {
+            // Detect collision only if brick is visible
+            if(brick.visible){
+                if(ball.x - ball.size > brick.x && //Left side brick check
+                   ball.x + ball.size < brick.x + brick.width && // Right side brick check
+                   ball.y + ball.size > brick.y && // Top side brick check
+                   ball.y - ball.size < brick.y + brick.height){ // Bottom side brick check
+                    ball.dy *= -1;
+                    
+                    // Brick becomes invisible after collision with the ball
+                    brick.visible = false;
+                    }
+            }
+        });
+    });   
 }
 
 // Update canvas elements
