@@ -93,6 +93,10 @@ function drawBricks(){
 
 // Draw canvas elements
 function draw(){
+
+    // Clear canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
     drawBall();
     drawPaddle();
     drawScores();
@@ -120,7 +124,11 @@ update();
 
 // Keydown event
 function keyDown(event){
-    if(event.key === 'ArrowRight') paddle.width += paddle.speed;
+    if(event.key === 'Right' || event.key === 'ArrowRight'){
+        paddle.dx = paddle.speed
+    } else if(event.key === 'Left' || event.key === 'ArrowLeft'){
+        paddle.dx = paddle.speed * -1;
+    }
 }
 
 // Keyup event
