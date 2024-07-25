@@ -112,17 +112,32 @@ function movePaddle(){
     if(paddle.x < 0) paddle.x = 0;
 }
 
+// Move ball
+function moveBall(){
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+
+    // Wall collision
+    if(ball.x + ball.size > canvas.width || ball.x - ball.size < 0) ball.dx *= -1;
+    if(ball.y + ball.size > canvas.height || ball.y - ball.size < 0) ball.dy *= -1;
+}
+
 // Update canvas elements
 function update(){
+    // Draw canvas elements
     draw();
 
+    // Move paddle to rigth/left direction
     movePaddle();
+
+    // Move ball.
+    moveBall();
 
     requestAnimationFrame(update);
 }
 update();
 
-// Keydown event
+// Keydown event. Move Paddle left/right directions
 function keyDown(event){
     if(event.key === 'Right' || event.key === 'ArrowRight'){
         paddle.dx = paddle.speed;
@@ -131,7 +146,7 @@ function keyDown(event){
     }
 }
 
-// Keyup event
+// Keyup event. Stop paddle
 function keyUp(event){
     if(event.key === 'Right' || event.key === 'ArrowRight'){
         paddle.dx = 0;
